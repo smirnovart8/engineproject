@@ -14,7 +14,7 @@ public class User {
     @Column (name = "is_moderator")
     private boolean isModerator;
 
-    @Column (name = "reg_time")
+   @Column (name = "reg_time")
     private Date regTime;
 
     private String name;
@@ -27,7 +27,7 @@ public class User {
 
     private String photo;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+   @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Post> posts;
 
     @OneToMany (cascade = CascadeType.ALL, mappedBy = "user")
