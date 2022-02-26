@@ -10,8 +10,8 @@ public class PostComment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @JoinColumn(name = "parent_id")
-    private PostComment parent;
+    @Column(name = "parent_id")
+    private Integer parentId;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "post_id")
@@ -25,13 +25,16 @@ public class PostComment {
 
     private String text;
 
-    public PostComment(int id, PostComment parent, Post post, User user, Date time, String text) {
+    public PostComment(int id, Integer parentId, Post post, User user, Date time, String text) {
         this.id = id;
-        this.parent = parent;
+        this.parentId = parentId;
         this.post = post;
         this.user = user;
         this.time = time;
         this.text = text;
+    }
+
+    public PostComment() {
     }
 
     public int getId() {
@@ -42,12 +45,12 @@ public class PostComment {
         this.id = id;
     }
 
-    public PostComment getParentId() {
-        return parent;
+    public Integer getParentId() {
+        return parentId;
     }
 
-    public void setParentId(PostComment parentId) {
-        this.parent = parent;
+    public void setParentId(Integer parentId) {
+        this.parentId = parentId;
     }
 
     public Post getPost() {
@@ -81,6 +84,5 @@ public class PostComment {
     public void setText(String text) {
         this.text = text;
     }
-
-
+    
 }

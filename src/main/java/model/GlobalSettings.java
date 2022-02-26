@@ -24,6 +24,9 @@ public class GlobalSettings {
         this.value = value;
     }
 
+    public GlobalSettings() {
+    }
+
     public int getId() {
         return id;
     }

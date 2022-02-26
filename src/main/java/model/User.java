@@ -2,7 +2,7 @@ package model;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 public class User {
@@ -28,13 +28,27 @@ public class User {
     private String photo;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-    private List<Post> posts;
+    private Set<Post> posts;
 
     @OneToMany (cascade = CascadeType.ALL, mappedBy = "user")
-    private List<PostComment> postComments;
+    private Set<PostComment> postComments;
 
     @OneToMany (cascade = CascadeType.ALL, mappedBy = "user")
-    private List<PostVote> postVotes;
+    private Set<PostVote> postVotes;
+
+    public User(int id, boolean isModerator, Date regTime, String name, String email, String password, String code, String photo) {
+        this.id = id;
+        this.isModerator = isModerator;
+        this.regTime = regTime;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.code = code;
+        this.photo = photo;
+    }
+
+    public User() {
+    }
 
     public int getId() {
         return id;
@@ -100,27 +114,27 @@ public class User {
         this.photo = photo;
     }
 
-    public List<Post> getPosts() {
+    public Set<Post> getPosts() {
         return posts;
     }
 
-    public void setPosts(List<Post> posts) {
+    public void setPosts(Set<Post> posts) {
         this.posts = posts;
     }
 
-    public List<PostComment> getPostComments() {
+    public Set<PostComment> getPostComments() {
         return postComments;
     }
 
-    public void setPostComments(List<PostComment> postComments) {
+    public void setPostComments(Set<PostComment> postComments) {
         this.postComments = postComments;
     }
 
-    public List<PostVote> getPostVotes() {
+    public Set<PostVote> getPostVotes() {
         return postVotes;
     }
 
-    public void setPostVotes(List<PostVote> postVotes) {
+    public void setPostVotes(Set<PostVote> postVotes) {
         this.postVotes = postVotes;
     }
 }
