@@ -1,4 +1,4 @@
-package model;
+package main.model;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -84,5 +84,5 @@ public class PostComment {
     public void setText(String text) {
         this.text = text;
     }
-    
+
 }
