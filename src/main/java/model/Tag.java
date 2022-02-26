@@ -1,7 +1,7 @@
 package model;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "tags")
@@ -14,15 +14,17 @@ public class Tag {
     private String name;
 
 
-
-    @OneToMany (cascade = CascadeType.ALL, mappedBy = "tag")
-    private List<TagToPost> tagToPosts;
-
+    @ManyToMany (cascade = CascadeType.ALL, mappedBy = "tags")
+    private Set<Post> posts;
 
     public Tag(int id, String name) {
         this.id = id;
         this.name = name;
     }
+
+    public Tag() {
+    }
+
     public int getId() {
         return id;
     }
@@ -39,11 +41,12 @@ public class Tag {
         this.name = name;
     }
 
-    public List<TagToPost> getTagToPosts() {
-        return tagToPosts;
+    public Set<Post> getPosts() {
+        return posts;
     }
 
-    public void setTagToPosts(List<TagToPost> tagToPosts) {
-        this.tagToPosts = tagToPosts;
+    public void setPosts(Set<Post> posts) {
+        this.posts = posts;
     }
+
 }

@@ -10,3 +10,6 @@ target/
 
 # Maven
 log/
+
+#CheckStyle
+engineproject.iml

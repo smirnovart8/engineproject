@@ -2,7 +2,7 @@ package model;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "posts")
@@ -19,9 +19,8 @@ public class Post {
     @Column(columnDefinition = "enum", name = "moderation_status")
     private ModerationStatusType moderationStatus;
 
-    @ManyToOne(cascade = CascadeType.ALL)
     @Column(name = "moderator_id")
-    private User moderator;
+    private int moderatorId;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
@@ -37,27 +36,29 @@ public class Post {
     private int viewCount;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
-    private List<PostComment> postComments;
+    private Set<PostComment> postComments;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
-    private List<PostVote> postVotes;
+    private Set<PostVote> postVotes;
 
     @ManyToMany (cascade = CascadeType.ALL)
     @JoinTable (name = "tag2post",
     joinColumns = {@JoinColumn (name = "post_id")},
     inverseJoinColumns = {@JoinColumn(name ="tag_id")})
-    private List<Tag> postTags;
+    private Set<Tag> tags;
 
-
-    public Post(int id, boolean isActive, ModerationStatusType moderationStatus, User moderator, User user, Date time, String title, String text) {
+    public Post(int id, boolean isActive, ModerationStatusType moderationStatus, int moderatorId, User user, Date time, String title, String text) {
         this.id = id;
         this.isActive = isActive;
         this.moderationStatus = moderationStatus;
-        this.moderator = moderator;
+        this.moderatorId = moderatorId;
         this.user = user;
         this.time = time;
         this.title = title;
         this.text = text;
+    }
+
+    public Post() {
     }
 
     public int getId() {
@@ -76,12 +77,12 @@ public class Post {
         isActive = active;
     }
 
-    public User getModeratorId() {
-        return moderator;
+    public int getModeratorId() {
+        return moderatorId;
     }
 
-    public void setModeratorId(User moderator) {
-        this.moderator = moderator;
+    public void setModeratorId(int moderatorId) {
+        this.moderatorId = moderatorId;
     }
 
     public User getUserId() {
@@ -132,19 +133,28 @@ public class Post {
         this.moderationStatus = moderationStatus;
     }
 
-    public List<PostComment> getPostComments() {
+    public Set<PostComment> getPostComments() {
         return postComments;
     }
 
-    public void setPostComments(List<PostComment> postComments) {
+    public void setPostComments(Set<PostComment> postComments) {
         this.postComments = postComments;
     }
 
-    public List<PostVote> getPostVotes() {
+    public Set<Tag> getTags() {
+        return tags;
+    }
+
+    public void setTags(Set<Tag> tags) {
+        this.tags = tags;
+    }
+
+    public Set<PostVote> getPostVotes() {
         return postVotes;
     }
 
-    public void setPostVotes(List<PostVote> postVotes) {
+    public void setPostVotes(Set<PostVote> postVotes) {
         this.postVotes = postVotes;
     }
+
 }
