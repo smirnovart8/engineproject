@@ -84,6 +84,5 @@ public class PostComment {
     public void setText(String text) {
         this.text = text;
     }
-
-
+    
 }

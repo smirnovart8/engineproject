@@ -25,6 +25,8 @@ public class CaptchaCode {
         this.secretCode = secretCode;
     }
 
+    public CaptchaCode() {
+    }
 
     public int getId() {
         return id;

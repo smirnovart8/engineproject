@@ -36,6 +36,20 @@ public class User {
     @OneToMany (cascade = CascadeType.ALL, mappedBy = "user")
     private Set<PostVote> postVotes;
 
+    public User(int id, boolean isModerator, Date regTime, String name, String email, String password, String code, String photo) {
+        this.id = id;
+        this.isModerator = isModerator;
+        this.regTime = regTime;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.code = code;
+        this.photo = photo;
+    }
+
+    public User() {
+    }
+
     public int getId() {
         return id;
     }

@@ -31,6 +31,9 @@ public class PostVote {
         this.value = value;
     }
 
+    public PostVote() {
+    }
+
     public void setId(int id) {
         this.id = id;
     }
