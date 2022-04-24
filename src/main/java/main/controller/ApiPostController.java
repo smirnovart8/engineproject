@@ -1,24 +1,26 @@
 package main.controller;
 
 import main.api.response.PostResponse;
-import main.api.response.TagResponse;
-import org.springframework.http.HttpStatus;
+import main.service.PostService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping ("/api")
+@RequestMapping("/api")
 public class ApiPostController {
 
-    @GetMapping("/post")
-    private ResponseEntity<PostResponse> postResponseResponseEntity () {
-        return new ResponseEntity<>(new PostResponse(), HttpStatus.OK);
-    }
+  private final PostService postService;
 
-    @GetMapping("/tag")
-    private ResponseEntity<TagResponse> tagResponseResponseEntity () {
-        return new ResponseEntity<>(new TagResponse(), HttpStatus.OK);
-    }
+  public ApiPostController(PostService postService) {
+    this.postService = postService;
+  }
+
+  @GetMapping("/post")
+  private ResponseEntity<PostResponse> postResponseResponseEntity() {
+    return ResponseEntity.ok(new PostResponse(postService));
+  }
+
+
 }

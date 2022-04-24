@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class AuthResponse {
 
-private boolean autStatus;
-private User user;
+  private boolean autStatus;
+  private User user;
 
 }

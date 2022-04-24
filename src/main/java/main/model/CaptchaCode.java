@@ -1,64 +1,69 @@
 package main.model;
 
-import javax.persistence.*;
 import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "captcha_codes")
 public class CaptchaCode {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private int id;
 
-    private Date time;
+  private Date time;
 
-    private String code;
+  private String code;
 
-    @Column(name = "secret_code")
-    private String secretCode;
+  @Column(name = "secret_code")
+  private String secretCode;
 
-    public CaptchaCode(int id, Date time, String code, String secretCode) {
-        this.id = id;
-        this.time = time;
-        this.code = code;
-        this.secretCode = secretCode;
-    }
+  public CaptchaCode(int id, Date time, String code, String secretCode) {
+    this.id = id;
+    this.time = time;
+    this.code = code;
+    this.secretCode = secretCode;
+  }
 
-    public CaptchaCode() {
-    }
+  public CaptchaCode() {
+  }
 
-    public int getId() {
-        return id;
-    }
+  public int getId() {
+    return id;
+  }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+  public void setId(int id) {
+    this.id = id;
+  }
 
-    public Date getTime() {
-        return time;
-    }
+  public Date getTime() {
+    return time;
+  }
 
-    public void setTime(Date time) {
-        this.time = time;
-    }
+  public void setTime(Date time) {
+    this.time = time;
+  }
 
-    public String getCode() {
-        return code;
-    }
+  public String getCode() {
+    return code;
+  }
 
-    public void setCode(String code) {
-        this.code = code;
-    }
+  public void setCode(String code) {
+    this.code = code;
+  }
 
-    public String getSecretCode() {
-        return secretCode;
-    }
+  public String getSecretCode() {
+    return secretCode;
+  }
 
-    public void setSecretCode(String secretCode) {
-        this.secretCode = secretCode;
-    }
+  public void setSecretCode(String secretCode) {
+    this.secretCode = secretCode;
+  }
 
 
 }

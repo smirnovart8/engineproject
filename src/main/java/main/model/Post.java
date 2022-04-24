@@ -1,160 +1,176 @@
 package main.model;
 
-import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "posts")
 public class Post {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private int id;
 
-    @Column(name = "is_active")
-    private boolean isActive;
+  @Column(name = "is_active")
+  private boolean isActive;
 
-    @Enumerated(EnumType.STRING)
-    @Column(columnDefinition = "enum", name = "moderation_status")
-    private ModerationStatusType moderationStatus;
+  @Enumerated(EnumType.STRING)
+  @Column(name = "moderation_status",
+      columnDefinition = "enum( 'NEW', 'ACCEPTED', 'DECLINED') default 'NEW'",
+      nullable = false)
+  private ModerationStatusType moderationStatus;
 
-    @Column(name = "moderator_id")
-    private int moderatorId;
+  @Column(name = "moderator_id")
+  private int moderatorId;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
-    private User user;
+  @ManyToOne(cascade = CascadeType.ALL)
+  @JoinColumn(name = "user_id")
+  private User user;
 
-    private Date time;
+  private Date time;
 
-    private String title;
+  private String title;
 
-    private String text;
+  private String text;
 
-    @Column(name = "view_count")
-    private int viewCount;
+  @Column(name = "view_count")
+  private int viewCount;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
-    private Set<PostComment> postComments;
+  @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
+  private Set<PostComment> postComments;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
-    private Set<PostVote> postVotes;
+  @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
+  private Set<PostVote> postVotes;
 
-    @ManyToMany (cascade = CascadeType.ALL)
-    @JoinTable (name = "tag2post",
-    joinColumns = {@JoinColumn (name = "post_id")},
-    inverseJoinColumns = {@JoinColumn(name ="tag_id")})
-    private Set<Tag> tags;
+  @ManyToMany(cascade = CascadeType.ALL)
+  @JoinTable(name = "tag2post",
+      joinColumns = {@JoinColumn(name = "post_id")},
+      inverseJoinColumns = {@JoinColumn(name = "tag_id")})
+  private Set<Tag> tags;
 
-    public Post(int id, boolean isActive, ModerationStatusType moderationStatus, int moderatorId, User user, Date time, String title, String text) {
-        this.id = id;
-        this.isActive = isActive;
-        this.moderationStatus = moderationStatus;
-        this.moderatorId = moderatorId;
-        this.user = user;
-        this.time = time;
-        this.title = title;
-        this.text = text;
-    }
+  public Post(int id, boolean isActive, ModerationStatusType moderationStatus, int moderatorId,
+      User user, Date time, String title, String text) {
+    this.id = id;
+    this.isActive = isActive;
+    this.moderationStatus = moderationStatus;
+    this.moderatorId = moderatorId;
+    this.user = user;
+    this.time = time;
+    this.title = title;
+    this.text = text;
+  }
 
-    public Post() {
-    }
+  public Post() {
+  }
 
-    public int getId() {
-        return id;
-    }
+  public int getId() {
+    return id;
+  }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+  public void setId(int id) {
+    this.id = id;
+  }
 
-    public boolean isActive() {
-        return isActive;
-    }
+  public boolean isActive() {
+    return isActive;
+  }
 
-    public void setActive(boolean active) {
-        isActive = active;
-    }
+  public void setActive(boolean active) {
+    isActive = active;
+  }
 
-    public int getModeratorId() {
-        return moderatorId;
-    }
+  public int getModeratorId() {
+    return moderatorId;
+  }
 
-    public void setModeratorId(int moderatorId) {
-        this.moderatorId = moderatorId;
-    }
+  public void setModeratorId(int moderatorId) {
+    this.moderatorId = moderatorId;
+  }
 
-    public User getUserId() {
-        return user;
-    }
+  public User getUserId() {
+    return user;
+  }
 
-    public void setUserId(User user) {
-        this.user = user;
-    }
+  public void setUserId(User user) {
+    this.user = user;
+  }
 
-    public Date getTime() {
-        return time;
-    }
+  public Date getTime() {
+    return time;
+  }
 
-    public void setTime(Date time) {
-        this.time = time;
-    }
+  public void setTime(Date time) {
+    this.time = time;
+  }
 
-    public String getTitle() {
-        return title;
-    }
+  public String getTitle() {
+    return title;
+  }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+  public void setTitle(String title) {
+    this.title = title;
+  }
 
-    public String getText() {
-        return text;
-    }
+  public String getText() {
+    return text;
+  }
 
-    public void setText(String text) {
-        this.text = text;
-    }
+  public void setText(String text) {
+    this.text = text;
+  }
 
-    public int getViewCount() {
-        return viewCount;
-    }
+  public int getViewCount() {
+    return viewCount;
+  }
 
-    public void setViewCount(int viewCount) {
-        this.viewCount = viewCount;
-    }
+  public void setViewCount(int viewCount) {
+    this.viewCount = viewCount;
+  }
 
-    public ModerationStatusType getModerationStatus() {
-        return moderationStatus;
-    }
+  public ModerationStatusType getModerationStatus() {
+    return moderationStatus;
+  }
 
-    public void setModerationStatus(ModerationStatusType moderationStatus) {
-        this.moderationStatus = moderationStatus;
-    }
+  public void setModerationStatus(ModerationStatusType moderationStatus) {
+    this.moderationStatus = moderationStatus;
+  }
 
-    public Set<PostComment> getPostComments() {
-        return postComments;
-    }
+  public Set<PostComment> getPostComments() {
+    return postComments;
+  }
 
-    public void setPostComments(Set<PostComment> postComments) {
-        this.postComments = postComments;
-    }
+  public void setPostComments(Set<PostComment> postComments) {
+    this.postComments = postComments;
+  }
 
-    public Set<Tag> getTags() {
-        return tags;
-    }
+  public Set<Tag> getTags() {
+    return tags;
+  }
 
-    public void setTags(Set<Tag> tags) {
-        this.tags = tags;
-    }
+  public void setTags(Set<Tag> tags) {
+    this.tags = tags;
+  }
 
-    public Set<PostVote> getPostVotes() {
-        return postVotes;
-    }
+  public Set<PostVote> getPostVotes() {
+    return postVotes;
+  }
 
-    public void setPostVotes(Set<PostVote> postVotes) {
-        this.postVotes = postVotes;
-    }
+  public void setPostVotes(Set<PostVote> postVotes) {
+    this.postVotes = postVotes;
+  }
 
 }

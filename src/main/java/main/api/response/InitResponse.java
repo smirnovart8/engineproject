@@ -6,67 +6,66 @@ import org.springframework.stereotype.Component;
 @Component
 public class InitResponse {
 
-    @Value("${blog.title}")
-    private String title;
-    @Value("${blog.subtitle}")
-    private String subtitle;
-    @Value("${blog.phone}")
-    private String phone;
-    @Value("${blog.email}")
-    private String email;
-    @Value("${blog.copyright}")
-    private String copyright;
-    @Value("${blog.copyrightFrom}")
-    private String copyrightFrom;
+  @Value("${blog.title}")
+  private String title;
+  @Value("${blog.subtitle}")
+  private String subtitle;
+  @Value("${blog.phone}")
+  private String phone;
+  @Value("${blog.email}")
+  private String email;
+  @Value("${blog.copyright}")
+  private String copyright;
+  @Value("${blog.copyrightFrom}")
+  private String copyrightFrom;
 
-    public String getTitle() {
-        return title;
-    }
+  public String getTitle() {
+    return title;
+  }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+  public void setTitle(String title) {
+    this.title = title;
+  }
 
-    public String getSubtitle() {
-        return subtitle;
-    }
+  public String getSubtitle() {
+    return subtitle;
+  }
 
-    public void setSubtitle(String subtitle) {
-        this.subtitle = subtitle;
-    }
+  public void setSubtitle(String subtitle) {
+    this.subtitle = subtitle;
+  }
 
-    public String getPhone() {
-        return phone;
-    }
+  public String getPhone() {
+    return phone;
+  }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
+  public void setPhone(String phone) {
+    this.phone = phone;
+  }
 
-    public String getEmail() {
-        return email;
-    }
+  public String getEmail() {
+    return email;
+  }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+  public void setEmail(String email) {
+    this.email = email;
+  }
 
-    public String getCopyright() {
-        return copyright;
-    }
+  public String getCopyright() {
+    return copyright;
+  }
 
-    public void setCopyright(String copyright) {
-        this.copyright = copyright;
-    }
+  public void setCopyright(String copyright) {
+    this.copyright = copyright;
+  }
 
-    public String getCopyrightFrom() {
-        return copyrightFrom;
-    }
+  public String getCopyrightFrom() {
+    return copyrightFrom;
+  }
 
-    public void setCopyrightFrom(String copyrightFrom) {
-        this.copyrightFrom = copyrightFrom;
-    }
-
+  public void setCopyrightFrom(String copyrightFrom) {
+    this.copyrightFrom = copyrightFrom;
+  }
 
 
 }
