@@ -69,7 +69,7 @@ CREATE TABLE `tags` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
 
-CREATE TABLE `user` (
+CREATE TABLE `users` (
   `id` int NOT NULL,
   `code` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
