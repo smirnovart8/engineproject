@@ -1,21 +1,28 @@
 package main.service;
 
 import java.util.List;
+import main.api.response.PostResponseDTO;
 import main.model.Post;
 import main.repository.PostRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class PostService {
 
-  private final PostRepository postRepository;
+  private List<PostResponseDTO> postResponseDTOList;
 
-  public PostService(PostRepository postRepository) {
-    this.postRepository = postRepository;
+  @Autowired
+  private PostRepository postRepository;
+
+
+  public Post getPost(int id) {
+    return postRepository.getById(id);
   }
 
-  public List<Post> posts() {
+  public List<PostResponseDTO> getPostResponseDTOList(int offset, int limit, String mode) {
 
-    return postRepository.findAll();
+    postRepository
+    return postRepository. //todo
   }
 }

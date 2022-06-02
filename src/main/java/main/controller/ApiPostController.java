@@ -1,6 +1,6 @@
 package main.controller;
 
-import main.api.response.PostResponse;
+import main.api.response.PostResponseDTO;
 import main.service.PostService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,8 +18,8 @@ public class ApiPostController {
   }
 
   @GetMapping("/post")
-  private ResponseEntity<PostResponse> postResponseResponseEntity() {
-    return ResponseEntity.ok(new PostResponse(postService));
+  private ResponseEntity<PostResponseDTO> postResponseResponseEntity() {
+    return ResponseEntity.ok(new PostResponseDTO(postService));
   }
 
 

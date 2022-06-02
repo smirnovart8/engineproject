@@ -1,3 +1,4 @@
-INSERT INTO global_settings (id, code, name, value)
-    VALUES (1, 'MILTIUSER_MODE', 'Многопользовательский режим', true),
-           (2, 'POST_PREMODERATION', 'Премодерация постов', false);
+INSERT INTO global_settings (code, value)
+    VALUES ('MULTIUSER_MODE', true),
+           ('POST_PREMODERATION', false),
+           ('STATISTICS_IS_PUBLIC', true);
